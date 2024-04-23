@@ -1,0 +1,62 @@
+@import "scss/bootstrap";
+
+$gern : #696;
+$blk : #000000;
+
+.topnav {
+    background-color: $blk;
+    overflow: hidden;
+  }
+  
+  /* Style the links inside the navigation bar */
+  .topnav button {
+    background-color: $gern; /* Green */
+    border: none;
+    color: white;
+    text-align: center;
+    display: inline-block;
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  
+  /* Change the color of links on hover */
+  .topnav button:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  select {
+    /* C */
+    background-color: $gern;
+    border: none;
+    color: white;
+    padding: 15px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+  }
+  option {
+    background-color: $gern; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+  }
+  option:checked {  
+    background-color: $gern; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+  }
+  

@@ -1,0 +1,200 @@
+<model xmlns="http://schemas.microsoft.com/3dmanufacturing/core/2015/02" xmlns:m="http://schemas.microsoft.com/3dmanufacturing/material/2015/02" unit="millimeter" xml:lang="en-US">
+<resources>
+<basematerials id="1">
+<base name="Material" displaycolor="#3F48CCFF"/>
+</basematerials>
+<object id="2" type="model">
+<mesh>
+<vertices>
+<vertex x="66.797" y="349.379" z="-66.797"/>
+<vertex x="-66.797" y="-349.379" z="-66.797"/>
+<vertex x="-66.797" y="349.379" z="-66.797"/>
+<vertex x="66.797" y="-349.379" z="-66.797"/>
+<vertex x="-66.797" y="349.379" z="66.797"/>
+<vertex x="66.797" y="-349.379" z="66.797"/>
+<vertex x="66.797" y="349.379" z="66.797"/>
+<vertex x="-66.797" y="-349.379" z="66.797"/>
+</vertices>
+<triangles>
+<triangle v1="0" v2="1" v3="2" pid="1" p1="0"/>
+<triangle v1="0" v2="3" v3="1" pid="1" p1="0"/>
+<triangle v1="4" v2="5" v3="6" pid="1" p1="0"/>
+<triangle v1="4" v2="7" v3="5" pid="1" p1="0"/>
+<triangle v1="6" v2="3" v3="0" pid="1" p1="0"/>
+<triangle v1="6" v2="5" v3="3" pid="1" p1="0"/>
+<triangle v1="2" v2="7" v3="4" pid="1" p1="0"/>
+<triangle v1="2" v2="1" v3="7" pid="1" p1="0"/>
+<triangle v1="2" v2="6" v3="0" pid="1" p1="0"/>
+<triangle v1="2" v2="4" v3="6" pid="1" p1="0"/>
+<triangle v1="7" v2="3" v3="5" pid="1" p1="0"/>
+<triangle v1="7" v2="1" v3="3" pid="1" p1="0"/>
+</triangles>
+</mesh>
+</object>
+<object id="3" type="model">
+<mesh>
+<vertices>
+<vertex x="256.492" y="106.212" z="-106.212"/>
+<vertex x="-256.492" y="-106.212" z="-106.212"/>
+<vertex x="-256.492" y="106.212" z="-106.212"/>
+<vertex x="256.492" y="-106.212" z="-106.212"/>
+<vertex x="-256.492" y="106.212" z="106.212"/>
+<vertex x="256.492" y="-106.212" z="106.212"/>
+<vertex x="256.492" y="106.212" z="106.212"/>
+<vertex x="-256.492" y="-106.212" z="106.212"/>
+</vertices>
+<triangles>
+<triangle v1="0" v2="1" v3="2" pid="1" p1="0"/>
+<triangle v1="0" v2="3" v3="1" pid="1" p1="0"/>
+<triangle v1="4" v2="5" v3="6" pid="1" p1="0"/>
+<triangle v1="4" v2="7" v3="5" pid="1" p1="0"/>
+<triangle v1="6" v2="3" v3="0" pid="1" p1="0"/>
+<triangle v1="6" v2="5" v3="3" pid="1" p1="0"/>
+<triangle v1="2" v2="7" v3="4" pid="1" p1="0"/>
+<triangle v1="2" v2="1" v3="7" pid="1" p1="0"/>
+<triangle v1="2" v2="6" v3="0" pid="1" p1="0"/>
+<triangle v1="2" v2="4" v3="6" pid="1" p1="0"/>
+<triangle v1="7" v2="3" v3="5" pid="1" p1="0"/>
+<triangle v1="7" v2="1" v3="3" pid="1" p1="0"/>
+</triangles>
+</mesh>
+</object>
+<object id="4" type="model">
+<mesh>
+<vertices>
+<vertex x="0" y="-76.430" z="0"/>
+<vertex x="-82.105" y="-76.430" z="-82.105"/>
+<vertex x="82.105" y="-76.430" z="-82.105"/>
+<vertex x="0" y="76.430" z="0"/>
+<vertex x="-82.105" y="-76.430" z="82.105"/>
+<vertex x="82.105" y="-76.430" z="82.105"/>
+</vertices>
+<triangles>
+<triangle v1="0" v2="1" v3="2" pid="1" p1="0"/>
+<triangle v1="1" v2="3" v3="2" pid="1" p1="0"/>
+<triangle v1="0" v2="4" v3="1" pid="1" p1="0"/>
+<triangle v1="4" v2="3" v3="1" pid="1" p1="0"/>
+<triangle v1="0" v2="5" v3="4" pid="1" p1="0"/>
+<triangle v1="5" v2="3" v3="4" pid="1" p1="0"/>
+<triangle v1="0" v2="2" v3="5" pid="1" p1="0"/>
+<triangle v1="2" v2="3" v3="5" pid="1" p1="0"/>
+</triangles>
+</mesh>
+</object>
+<object id="5" type="model">
+<mesh>
+<vertices>
+<vertex x="130.260" y="110.896" z="-110.896"/>
+<vertex x="-130.260" y="-110.896" z="-110.896"/>
+<vertex x="-130.260" y="110.896" z="-110.896"/>
+<vertex x="130.260" y="-110.896" z="-110.896"/>
+<vertex x="-130.260" y="110.896" z="110.896"/>
+<vertex x="130.260" y="-110.896" z="110.896"/>
+<vertex x="130.260" y="110.896" z="110.896"/>
+<vertex x="-130.260" y="-110.896" z="110.896"/>
+</vertices>
+<triangles>
+<triangle v1="0" v2="1" v3="2" pid="1" p1="0"/>
+<triangle v1="0" v2="3" v3="1" pid="1" p1="0"/>
+<triangle v1="4" v2="5" v3="6" pid="1" p1="0"/>
+<triangle v1="4" v2="7" v3="5" pid="1" p1="0"/>
+<triangle v1="6" v2="3" v3="0" pid="1" p1="0"/>
+<triangle v1="6" v2="5" v3="3" pid="1" p1="0"/>
+<triangle v1="2" v2="7" v3="4" pid="1" p1="0"/>
+<triangle v1="2" v2="1" v3="7" pid="1" p1="0"/>
+<triangle v1="2" v2="6" v3="0" pid="1" p1="0"/>
+<triangle v1="2" v2="4" v3="6" pid="1" p1="0"/>
+<triangle v1="7" v2="3" v3="5" pid="1" p1="0"/>
+<triangle v1="7" v2="1" v3="3" pid="1" p1="0"/>
+</triangles>
+</mesh>
+</object>
+<object id="6" type="model">
+<mesh>
+<vertices>
+<vertex x="0" y="-75.841" z="0"/>
+<vertex x="-92.122" y="-75.841" z="-92.122"/>
+<vertex x="92.122" y="-75.841" z="-92.122"/>
+<vertex x="0" y="75.841" z="0"/>
+<vertex x="-92.122" y="-75.841" z="92.122"/>
+<vertex x="92.122" y="-75.841" z="92.122"/>
+</vertices>
+<triangles>
+<triangle v1="0" v2="1" v3="2" pid="1" p1="0"/>
+<triangle v1="1" v2="3" v3="2" pid="1" p1="0"/>
+<triangle v1="0" v2="4" v3="1" pid="1" p1="0"/>
+<triangle v1="4" v2="3" v3="1" pid="1" p1="0"/>
+<triangle v1="0" v2="5" v3="4" pid="1" p1="0"/>
+<triangle v1="5" v2="3" v3="4" pid="1" p1="0"/>
+<triangle v1="0" v2="2" v3="5" pid="1" p1="0"/>
+<triangle v1="2" v2="3" v3="5" pid="1" p1="0"/>
+</triangles>
+</mesh>
+</object>
+<object id="7" type="model">
+<mesh>
+<vertices>
+<vertex x="72.330" y="97.800" z="-72.330"/>
+<vertex x="-72.330" y="-97.800" z="-72.330"/>
+<vertex x="-72.330" y="97.800" z="-72.330"/>
+<vertex x="72.330" y="-97.800" z="-72.330"/>
+<vertex x="-72.330" y="97.800" z="72.330"/>
+<vertex x="72.330" y="-97.800" z="72.330"/>
+<vertex x="72.330" y="97.800" z="72.330"/>
+<vertex x="-72.330" y="-97.800" z="72.330"/>
+</vertices>
+<triangles>
+<triangle v1="0" v2="1" v3="2" pid="1" p1="0"/>
+<triangle v1="0" v2="3" v3="1" pid="1" p1="0"/>
+<triangle v1="4" v2="5" v3="6" pid="1" p1="0"/>
+<triangle v1="4" v2="7" v3="5" pid="1" p1="0"/>
+<triangle v1="6" v2="3" v3="0" pid="1" p1="0"/>
+<triangle v1="6" v2="5" v3="3" pid="1" p1="0"/>
+<triangle v1="2" v2="7" v3="4" pid="1" p1="0"/>
+<triangle v1="2" v2="1" v3="7" pid="1" p1="0"/>
+<triangle v1="2" v2="6" v3="0" pid="1" p1="0"/>
+<triangle v1="2" v2="4" v3="6" pid="1" p1="0"/>
+<triangle v1="7" v2="3" v3="5" pid="1" p1="0"/>
+<triangle v1="7" v2="1" v3="3" pid="1" p1="0"/>
+</triangles>
+</mesh>
+</object>
+<object id="8" type="model">
+<mesh>
+<vertices>
+<vertex x="34.843" y="49.173" z="-34.843"/>
+<vertex x="-34.843" y="-49.173" z="-34.843"/>
+<vertex x="-34.843" y="49.173" z="-34.843"/>
+<vertex x="34.843" y="-49.173" z="-34.843"/>
+<vertex x="-34.843" y="49.173" z="34.843"/>
+<vertex x="34.843" y="-49.173" z="34.843"/>
+<vertex x="34.843" y="49.173" z="34.843"/>
+<vertex x="-34.843" y="-49.173" z="34.843"/>
+</vertices>
+<triangles>
+<triangle v1="0" v2="1" v3="2" pid="1" p1="0"/>
+<triangle v1="0" v2="3" v3="1" pid="1" p1="0"/>
+<triangle v1="4" v2="5" v3="6" pid="1" p1="0"/>
+<triangle v1="4" v2="7" v3="5" pid="1" p1="0"/>
+<triangle v1="6" v2="3" v3="0" pid="1" p1="0"/>
+<triangle v1="6" v2="5" v3="3" pid="1" p1="0"/>
+<triangle v1="2" v2="7" v3="4" pid="1" p1="0"/>
+<triangle v1="2" v2="1" v3="7" pid="1" p1="0"/>
+<triangle v1="2" v2="6" v3="0" pid="1" p1="0"/>
+<triangle v1="2" v2="4" v3="6" pid="1" p1="0"/>
+<triangle v1="7" v2="3" v3="5" pid="1" p1="0"/>
+<triangle v1="7" v2="1" v3="3" pid="1" p1="0"/>
+</triangles>
+</mesh>
+</object>
+</resources>
+<build>
+<item objectid="2" transform="0.001 0 0 0 0 0.001 0 -0.001 0 0.00600195 -0.231374 -0.00762051"/>
+<item objectid="3" transform="0.001 0 0 0 0 0.001 0 -0.001 0 -0.011975 -0.222577 0.447971"/>
+<item objectid="4" transform="0.00298377 0 0 0 0 0.000983478 0 -0.000983478 0 0.00377548 -0.235032 0.629351"/>
+<item objectid="5" transform="0.00217147 0 0 0 0 0.000450306 0 -0.001 0 -0.343652 -0.240261 0.257546"/>
+<item objectid="6" transform="-8.52785e-11 0.000702079 -0.000137247 -0.001 -1.19209e-10 -1.19209e-10 -7.79647e-11 0.000125476 0.000641866 -0.702349 -0.25002 0.256462"/>
+<item objectid="7" transform="0.000904224 0 0 0 0 0.000634483 0 -0.00362797 0 0.138203 -0.48514 0.195347"/>
+<item objectid="8" transform="0.0016349 0 0 0 0 0.001 0 -0.001 0 0.0247388 -0.384234 0.483449"/>
+</build>
+</model>

@@ -1,0 +1,19 @@
+{
+  "name": "scss",
+  "version": "1.0.0",
+  "description": "h",
+  "main": "index.js",
+  "scripts": {
+    "build-css": "node-sass --include-path scss style.scss styles.css",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "node-sass": "^9.0.0",
+    "sass": "^1.75.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5"
+  }
+}

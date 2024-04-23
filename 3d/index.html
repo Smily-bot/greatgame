@@ -1,0 +1,179 @@
+<title>3D</title>
+
+<input class="fileLoader" onchange="loadModel(this.files);" type="file" accept=".model">
+<canvas id="game" width="800" height="600"></canvas>
+
+<style>
+
+body
+{
+  margin: 0;
+}
+
+.fileLoader
+{
+  position: fixed;
+}
+
+</style>
+
+<script src="3dengine.js"></script>
+<script src="assets.js"></script>
+
+<script>
+
+var x = 500;
+var y = 0;
+var z = 671;
+
+counter = 0;
+
+var fov = 120;
+
+
+
+function gameloop()
+{
+    gameLogic();
+    paintScreen();
+}
+
+function controlLogic()
+{
+    var walkSpd = 3;
+	var turnMult = 3;
+	
+	if(shift)
+	{
+		walkSpd *= 2;
+	}
+
+	if (up)
+	{
+		x += Math.sin(fpang) * walkSpd;
+		z += Math.cos(fpang) * walkSpd;
+	}
+	else if (down)
+	{
+		x -= Math.sin(fpang) * walkSpd;
+		z -= Math.cos(fpang) * walkSpd;
+	}
+
+	if (right)
+	{
+		x += Math.cos(fpang) * walkSpd;
+		z -= Math.sin(fpang) * walkSpd;
+	}
+	else if (left)
+	{
+		x -= Math.cos(fpang) * walkSpd;
+		z += Math.sin(fpang) * walkSpd;
+	}
+	
+	fpang += xTurn * turnMult;
+	fpYang += yTurn * turnMult;
+	
+	xTurn = 0;
+	yTurn = 0;
+}
+
+function gameLogic()
+{
+	counter += 0.005;
+    controlLogic();
+}
+
+function paintScreen()
+{
+	quadsToDraw = [];
+	lightSources = [];
+	
+	var lposx = -1600 + (Math.cos(counter) * 3200);
+	var lposy = -1300 + (Math.sin(counter) * 2700);
+	var lposz = -1400 + (Math.cos(counter) * 1900);
+	
+	lightSources.push(new lightSource([lposx, lposy, lposz]));
+
+	ctx.fillStyle = "#696";
+	ctx.fillRect(0, 0, canvas.width, canvas.height);
+	
+	ctx.fillStyle = "#000";
+	
+	//draw3dQuad(356.33356,-200,415, 528.15692,-200,550.6979, 528.15692,-200,550.6979, 727.75225,-200,459.71292);
+	
+	ctx.fillStyle = "#FF0";
+	fillPrism(lposx, lposy, lposz, 80, 80, 80);
+	
+	for (var i = 1; i < 6; i++)
+	{
+		ctx.fillStyle = 'rgb('+ i*31 +', '+ ((i+2)%8)*31 +', '+ ((i+5)%8)*31 +')';
+		fpDrawPillar(550, 0, 200 + 400 * i, 50, 300, 50);
+		fpDrawPillar(200, 0, 200 + 400 * i, 50, 300, 50);
+		
+		//ctx.fillStyle = 'rgb('+ i*31 +', '+ ((i+2)%8)*31 +', '+ ((i+5)%8)*31 +')';
+		//fpDrawPillar(550, 800, 200 + 400 * i, 50, 300, 50);
+		//fpDrawPillar(200, 800, 220 + 400 * i, 50, 300, 50);
+		
+		//ctx.fillStyle = 'rgb('+ i*31 +', '+ ((i+2)%8)*31 +', '+ ((i+5)%8)*31 +')';
+		//fpDrawPillar(300, -1200, 220 + 400 * i, 50, 300, 50);
+	}
+	
+	ctx.fillStyle = "#f7d32f";
+	//draw3dQuad(450,-20,780, 800,-20,480, 800,40,510, 450,40,810);
+	
+	drawHouse(160, -250, 0, 500, 350, 500);
+	
+	drawLoadedTriangles([500, 0, -800, 1000]);
+	
+	renderQuads();
+}
+
+
+
+
+
+
+/*
+
+plane: take 3 points: p1, p2, p3
+
+vector 1 = v1 = < p2.x - p1.x, p2.y - p1.y, p2.z - p1.z >
+vector 2 = v2 = < p3.x - p1.x, p3.y - p1.y, p3.z - p1.z >
+
+matrix:  ijk
+	  v1 xyz
+	  v2 xyz
+
+ai + bj + ck = 
+
+i * (v1.y* v2.z - v1.z*v2.y) + j * (v1.x * v2.z - v1.z * v2.x) + k * (v1.x * v2.y - v1.y * v2.x)
+
+a = v1.y* v2.z - v1.z*v2.y
+b = v1.x * v2.z - v1.z * v2.x
+c = v1.x * v2.y - v1.y * v2.x
+
+a(x - p1.x) + b(y - p1.y) + c(z - p1.z) = 
+d = ax + by + cz = a * p1.x + b * p1.y + c * p1.z
+
+
+line: take 2 points: p4, p5
+
+v3 = < p4.x - p5.x, p4.y - p5.y, p4.z - p5.z >
+
+x = p4.x + v3.x * t
+y = p4.y + v3.y * t
+z = p4.z + v3.z * t
+
+intersection:
+
+ax + by + cz = d
+
+a(p4.x + v3.x * t) + b(p4.y + v3.y * t) + c(p4.z + v3.z * t) = d
+a*p4.x + a*v3.x*t + b*p4.y + b*v3.y*t + c(p4.z + v3.z * t) = d
+t * (a*v3.x + b*v3.y + c*v3.z) + rest = d
+
+t = (d - a*p4.x - b*p4.y - c*p4.z) / (a*v3.x + b*v3.y + c*v3.z)
+
+*/
+
+</script>
