@@ -161,10 +161,11 @@ for(let i = 0; i <= wall.length-1; i++){
 code += "[";
 for(let k = 0; k <= 3; k++){
 code += Math.round(wall[i][k]).toString();
-if(k != 4) code += ',';
+if(k != 3) code += ',';
 }
-if(i != wall.length-1) code += "],"; else code += "]]";
+if(i != wall.length-1) code += "],"; else code += "]";
 }
+code += "]"
 
 code1 += Math.round(x+0).toString() + ',';
 code1 += Math.round(y+0).toString() + ',';
@@ -251,7 +252,79 @@ function paintScreen()
 
 
 
-ctx.fillRect(0, 0, canvas.getAttribute("height"), canvas.getAttribute("width"));
+
+const name = 'map';
+
+async function savetofile(){
+  let stuffcool = [Math.round(x+0),Math.round(y+0),Math.round(winx+0),Math.round(winy+0),Math.round(losex+0),Math.round(losey+0)]
+  var saveArr = [wall,stuffcool]
+  var saveStr = JSON.stringify(saveArr);
+  var taBlob = new Blob([saveStr], {type: 'text/plain'});
+  
+  const pickerOptions = {
+    suggestedName: `${name.toLowerCase()}.ssm`,
+    types: [
+      {
+        description: 'Simple StickMan Map',
+        accept: {
+          'text/plain': ['.ssm'],
+        },
+      },
+    ],
+  };
+
+  const fileHandle = await window.showSaveFilePicker(pickerOptions);
+
+  const writableFileStream = await fileHandle.createWritable();
+
+  await writableFileStream.write(taBlob);
+
+  await writableFileStream.close();
+}
+
+function loadSavedFile(loadStr)
+{
+	//var loadStr = getCookie("instrumentData" + saveSlot);
+	
+	if(loadStr == '')
+	{
+		return;
+	}
+	// (PART C) READ SELECTED FILE
+	let reader = new FileReader();
+	reader.onload = () => {
+		let data = JSON.parse(reader.result);
+		console.log(data);
+	};
+	reader.readAsText(file);
+	/*
+	
+	*/
+	
+}
+
+function load () {
+  // (PART B) GET SELECTED FILE
+  let file = document.getElementById("fileSelector").files[0];
+
+  // (PART C) READ SELECTED FILE
+  let reader = new FileReader();
+  reader.onload = () => {
+    let data = JSON.parse(reader.result);
+	playerstart[lvlnum] = data[1];
+	levels[lvlnum] = data[0];
+	wall = data[0];
+	x = playerstart[lvlnum][0];
+	y = playerstart[lvlnum][1];
+	winx = playerstart[lvlnum][2];
+	winy = playerstart[lvlnum][3];
+	losex = playerstart[lvlnum][4];
+	losey = playerstart[lvlnum][5];
+  };
+  reader.readAsText(file);
+}
+
+//ctx.fillRect(0, 0, canvas.getAttribute("height"), canvas.getAttribute("width"));
 
 function getMousePos(canvas, evt) {
     var rect = canvas.getBoundingClientRect();
@@ -289,7 +362,7 @@ function getMousePos(canvas, evt) {
 	canvas.addEventListener('mouseup', e => {
 	if(tool == 0){
 	mousePos2 = getMousePos(canvas, e);
-	wall.push([mousePos.x, mousePos.y, (Math.abs(mousePos2.x - mousePos.x)), (Math.abs(mousePos2.y - mousePos.y))]);
+	wall.push([mousePos.x, mousePos.y, (mousePos2.x - mousePos.x), (mousePos2.y - mousePos.y)]);
 	mousePos = {x: 0, y:0}
 	mousePos2 = {x: 0, y:0}
 	}

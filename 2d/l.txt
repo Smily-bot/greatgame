@@ -1,0 +1,5 @@
+a TISK called AJSUM
+
+if(a + b = c) jump to c - a * b
+
+a b c

@@ -1,0 +1,38 @@
+<textarea></textarea>
+
+<button id="save-file">Save File</button>
+
+
+
+
+
+<script>
+const saveBtn = document.document.getElementById("save-file");
+let name = 'Monty';
+
+saveBtn.addEventListener('click', async function(){
+  
+  let textArea = document.querySelector("textarea");
+  var taBlob = new Blob([textArea.value], {type: 'text/plain'});
+  
+  const pickerOptions = {
+    suggestedName: `${name.toLowerCase()}.txt`,
+    types: [
+      {
+        description: 'Simple Text File',
+        accept: {
+          'text/plain': ['.txt'],
+        },
+      },
+    ],
+  };
+
+  const fileHandle = await window.showSaveFilePicker(pickerOptions);
+
+  const writableFileStream = await fileHandle.createWritable();
+
+  await writableFileStream.write(taBlob);
+
+  await writableFileStream.close();
+});
+</script>

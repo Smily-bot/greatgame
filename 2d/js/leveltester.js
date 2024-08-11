@@ -84,12 +84,7 @@ var rect = {
   height: 100,
 };
 
-x = playerstart[lvlnum][0];
-y = playerstart[lvlnum][1];
-winx = playerstart[lvlnum][2];
-winy = playerstart[lvlnum][3];
-losex = playerstart[lvlnum][4];
-losey = playerstart[lvlnum][5];
+
 function youwinloop() {
     ctx.fillStyle = "#696";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -116,25 +111,16 @@ function Playbutton(rect, lWidth, fillColor, lineColor) {
   ctx.fillText('Start', rect.x + rect.width / 4, rect.y + 64);
 }
 function menu(){
-	// Binding the click event on the canvas
-canvas.addEventListener('click', function(evt) {
-  var mousePos = getMousePos(canvas, evt);
-
-  if (isInside(mousePos, rect)) {
-    state = stateval.game;
-  } else {
-
-  }
-}, false);
-
-// Question code
 ctx.fillStyle = "#696";
 ctx.fillRect(0, 0, canvas.width, canvas.height);
 ctx.fillStyle = "#000000";
-Playbutton(rect);
-ctx.fillStyle = "#000000";
-ctx.fillText('game', 350, 100);
+ctx.font = '40pt Kremlin Pro Web';
+ctx.fillText('level tester', 350, 100);
+ctx.fillText('press load and choose a map file', 0, 150);
 }
+
+
+
 function gameloop() {
     wall = levels[lvlnum];
     switch (state) {
@@ -228,21 +214,10 @@ function spritelogic() {
 }
 function winloselogic() {
     if (colide_with_sprite(x, y, win)) {
-        if (lvlnum == winnum) {
-            state = stateval.win;
-        }
-        else {
-            x = playerstart[lvlnum + 1][0];
-            y = playerstart[lvlnum + 1][1];
-            winx = playerstart[lvlnum + 1][2];
-            winy = playerstart[lvlnum + 1][3];
-            losex = playerstart[lvlnum + 1][4];
-            losey = playerstart[lvlnum + 1][5];
-            lvlnum++;
-        }
+		state = stateval.menu;
     }
     if (colide_with_sprite(x, y, lose)) {
-        state = stateval.losse;
+        state = stateval.menu;
     }
 }
 function gameLogic() {
@@ -298,4 +273,24 @@ function isInside(pos, rect) {
 
 // The rectangle should have x,y,width,height properties
 
+function load() {
+  // (PART B) GET SELECTED FILE
+  let file = document.getElementById("fileSelector").files[0];
 
+  // (PART C) READ SELECTED FILE
+  let reader = new FileReader();
+  reader.onload = () => {
+    let data = JSON.parse(reader.result);
+	playerstart[lvlnum] = data[1];
+	levels[lvlnum] = data[0];
+	wall = data[0];
+	x = playerstart[lvlnum][0];
+	y = playerstart[lvlnum][1];
+	winx = playerstart[lvlnum][2];
+	winy = playerstart[lvlnum][3];
+	losex = playerstart[lvlnum][4];
+	losey = playerstart[lvlnum][5];
+	state = stateval.game;
+  };
+  reader.readAsText(file);
+}
