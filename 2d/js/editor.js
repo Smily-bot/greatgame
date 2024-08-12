@@ -256,6 +256,7 @@ function paintScreen()
 const name = 'map';
 
 async function savetofile(){
+  wall = fixthisshitimade(wall);
   let stuffcool = [Math.round(x+0),Math.round(y+0),Math.round(winx+0),Math.round(winy+0),Math.round(losex+0),Math.round(losey+0)]
   var saveArr = [wall,stuffcool]
   var saveStr = JSON.stringify(saveArr);
@@ -322,6 +323,35 @@ function load () {
 	losey = playerstart[lvlnum][5];
   };
   reader.readAsText(file);
+}
+
+function fixthisshitimade(thelevel){
+
+let outarray = [];
+
+for(let i = 0; i <= thelevel.length-1; i++){
+
+let t = thelevel[i];
+
+let a = t[2];
+let b = t[3];
+let c = t[0];
+let d = t[1];
+
+if(Math.sign(a) == -1){
+	c += a;
+}
+
+if(Math.sign(b) == -1){
+	d += b;
+}
+
+outarray.push([c, d, Math.abs(a), Math.abs(b)]);
+
+}
+
+return outarray;
+	
 }
 
 //ctx.fillRect(0, 0, canvas.getAttribute("height"), canvas.getAttribute("width"));
