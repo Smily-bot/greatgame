@@ -28,9 +28,9 @@ var losey = 250;
 var youwin = false;
 var youlose = false;
 var levels = [
-    [[300, 450, 100, 100], [600, 250, 50, 350], [250, 250, 250, 100], [110, 205, 50, 20], [0, 550, 800, 50], [300, 100, 485, 50]],
-    [[43, 405, 100, 100], [257, 378, 100, 100], [449, 288, 50, 50], [564, 178, 50, 50], [621, 374, 485, 50]],
-    [[91,281,260,86,],[445,294,220,89,],[267,489,256,45,],[333,105,10,160,],[383,147,31,39,],[554,148,30,36,]]
+    [[[300, 450, 100, 100], [600, 250, 50, 350], [250, 250, 250, 100], [110, 205, 50, 20], [0, 550, 800, 50], [300, 100, 485, 50]]],
+    [[[43, 405, 100, 100], [257, 378, 100, 100], [449, 288, 50, 50], [564, 178, 50, 50], [621, 374, 485, 50]]],
+    [[[91,281,260,86],[445,294,220,89],[267,489,256,45],[333,105,10,160],[383,147,31,39],[554,148,30,36]]]
 ];
 var playerstart = [
     [100, 494, 714, 30, 450, 250],
@@ -135,8 +135,10 @@ Playbutton(rect);
 ctx.fillStyle = "#000000";
 ctx.fillText('game', 350, 100);
 }
-function gameloop() {
-    wall = levels[lvlnum];
+function gameloop(){
+    wall = levels[lvlnum][0];
+	fakewall = levels[lvlnum][1];
+	killwall = levels[lvlnum][2];
     switch (state) {
         case stateval.game:
             gameLogic();
@@ -238,6 +240,10 @@ function winloselogic() {
             winy = playerstart[lvlnum + 1][3];
             losex = playerstart[lvlnum + 1][4];
             losey = playerstart[lvlnum + 1][5];
+			win.x = winx;
+			win.y = winy;
+			lose.x = losex;
+			lose.y = losey;
             lvlnum++;
         }
     }
@@ -280,8 +286,27 @@ function paintScreen() {
     for (var i = 0; i < wall.length; i++) {
         ctx.fillRect(wall[i][0], wall[i][1], wall[i][2], wall[i][3]);
     }
+	ctx.fillStyle = "#ff0000";
+	for(var i=0; i<killwall.length; i++)
+	{
+		ctx.fillRect(killwall[i][0], killwall[i][1], killwall[i][2], killwall[i][3]);
+	}
+	ctx.fillStyle = "#000";
+	for(var i=0; i<fakewall.length; i++)
+	{
+		ctx.fillRect(fakewall[i][0], fakewall[i][1], fakewall[i][2], fakewall[i][3]);
+	}
     //console.log(pimageDraw.sprite);
-}
+	// Draw the particles
+        for (var i = 0; i < settings.density; i++) {
+          new Particle();
+        }
+
+        for (var i in particles) {
+          particles[i].draw();
+        }
+      }
+
 // Function to get the mouse position
 function getMousePos(canvas, event) {
   var rect = canvas.getBoundingClientRect();

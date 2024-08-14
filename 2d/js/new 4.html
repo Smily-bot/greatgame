@@ -1,6 +1,6 @@
 <textarea></textarea>
 
-<button id="save-file">Save File</button>
+<button id="save-file" onclick="win();">Send</button>
 
 
 
@@ -8,31 +8,22 @@
 
 <script>
 const saveBtn = document.document.getElementById("save-file");
-let name = 'Monty';
+let name = 'map';
 
-saveBtn.addEventListener('click', async function(){
+function win(){
   
   let textArea = document.querySelector("textarea");
-  var taBlob = new Blob([textArea.value], {type: 'text/plain'});
-  
-  const pickerOptions = {
-    suggestedName: `${name.toLowerCase()}.txt`,
-    types: [
-      {
-        description: 'Simple Text File',
-        accept: {
-          'text/plain': ['.txt'],
-        },
-      },
-    ],
-  };
-
-  const fileHandle = await window.showSaveFilePicker(pickerOptions);
-
-  const writableFileStream = await fileHandle.createWritable();
-
-  await writableFileStream.write(taBlob);
-
-  await writableFileStream.close();
+  fetch("https://hkdk.events/54l54jn04udz28", {
+  method: "POST",
+  headers: {'Content-Type': 'application/json'}, 
+  body: JSON.stringify({
+  "content": textArea.value,
+  "embeds": null,
+  "attachments": []
+})
+}).then(res => {
+  console.log("Request complete! response:", res);
 });
+  
+}
 </script>

@@ -53,7 +53,9 @@ var lvlnum = 0;
 var pwlkanim = [1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6]
 
 var winnum = 2;
-var wall
+var wall = [];
+var killwall = [];
+var fakewall = [];
 var pwdt = [
 {
 'cx' : 0, 'cy' : 0, 'cw' : 28, 'ch' : 50
@@ -109,7 +111,6 @@ ctx.fillRect(0, 0, canvas.width, canvas.height);
 
 function gameloop()
 {
-	wall = levels[lvlnum];
 
     gameLogic();
     paintScreen();
@@ -120,13 +121,41 @@ function gameloop()
 
 function isColliding(potX, potY)
 {
-    var retVal = false;
+    var retVal = -1;
     for(var i=0; i<wall.length; i++)
 	{
 		if(intersectRect(potX, potY, potX + pWidth, potY + pHeight, wall[i][0], 
 		wall[i][1], wall[i][0] + wall[i][2], wall[i][1] + wall[i][3]))
 		{
-		    retVal = true;
+		    retVal = i;
+			break;
+		}
+	}
+    return retVal;
+}
+function iskColliding(potX, potY)
+{
+    var retVal = -1;
+    for(var i=0; i<killwall.length; i++)
+	{
+		if(intersectRect(potX, potY, potX + pWidth, potY + pHeight, killwall[i][0], 
+		killwall[i][1], killwall[i][0] + killwall[i][2], killwall[i][1] + killwall[i][3]))
+		{
+		    retVal = i;
+			break;
+		}
+	}
+    return retVal;
+}
+function isfColliding(potX, potY)
+{
+    var retVal = -1;
+    for(var i=0; i<fakewall.length; i++)
+	{
+		if(intersectRect(potX, potY, potX + pWidth, potY + pHeight, fakewall[i][0], 
+		fakewall[i][1], fakewall[i][0] + fakewall[i][2], fakewall[i][1] + fakewall[i][3]))
+		{
+		    retVal = i;
 			break;
 		}
 	}
@@ -145,8 +174,10 @@ function undw(){
 wall.pop();
 }
 function reset(){
-
 wall.length = 0;
+fakewall.length = 0;
+killwall.length = 0;
+playerstart = [0,0,0,0,0,0];
 x = playerstart[lvlnum][0];
 y = playerstart[lvlnum][1];
 winx = playerstart[lvlnum][2];
@@ -241,11 +272,20 @@ function paintScreen()
 	
 	player.framedraw(x,y,28,50,psframe,pwdt)
 	
-	wall = levels[lvlnum];
 	ctx.fillStyle = "#000";
 	for(var i=0; i<wall.length; i++)
 	{
 		ctx.fillRect(wall[i][0], wall[i][1], wall[i][2], wall[i][3]);
+	}
+	ctx.fillStyle = "#ff0000";
+	for(var i=0; i<killwall.length; i++)
+	{
+		ctx.fillRect(killwall[i][0], killwall[i][1], killwall[i][2], killwall[i][3]);
+	}
+	ctx.fillStyle = "#000";
+	for(var i=0; i<fakewall.length; i++)
+	{
+		ctx.fillRect(fakewall[i][0], fakewall[i][1], fakewall[i][2], fakewall[i][3]);
 	}
 	//console.log(pimageDraw.sprite);
 }
@@ -256,9 +296,8 @@ function paintScreen()
 const name = 'map';
 
 async function savetofile(){
-  wall = fixthisshitimade(wall);
   let stuffcool = [Math.round(x+0),Math.round(y+0),Math.round(winx+0),Math.round(winy+0),Math.round(losex+0),Math.round(losey+0)]
-  var saveArr = [wall,stuffcool]
+  var saveArr = [wall,stuffcool,fakewall,killwall]
   var saveStr = JSON.stringify(saveArr);
   var taBlob = new Blob([saveStr], {type: 'text/plain'});
   
@@ -313,7 +352,6 @@ function load () {
   reader.onload = () => {
     let data = JSON.parse(reader.result);
 	playerstart[lvlnum] = data[1];
-	levels[lvlnum] = data[0];
 	wall = data[0];
 	x = playerstart[lvlnum][0];
 	y = playerstart[lvlnum][1];
@@ -321,6 +359,8 @@ function load () {
 	winy = playerstart[lvlnum][3];
 	losex = playerstart[lvlnum][4];
 	losey = playerstart[lvlnum][5];
+	fakewall = data[2];
+	killwall = data[3];
   };
   reader.readAsText(file);
 }
@@ -384,6 +424,22 @@ function getMousePos(canvas, evt) {
 		mousePos3 = getMousePos(canvas, evt);
 		x = mousePos3.x - 15;
 		y = mousePos3.y - 25;
+		}else if(tool == 4){
+		mousePos = getMousePos(canvas, evt);
+		}else if(tool == 5){
+		mousePos = getMousePos(canvas, evt);
+		}else if(tool == 6){
+		//no
+		}else if(tool == 7){
+		mousePos3 = getMousePos(canvas, evt);
+		let shit = isColliding(mousePos3.x,mousePos3.y);
+		if(shit != -1) wall.splice(shit, 1); else {
+			let shit = iskColliding(mousePos3.x,mousePos3.y);
+			if(shit != -1) killwall.splice(shit, 1); else {
+				let shit = isfColliding(mousePos3.x,mousePos3.y);
+				if(shit != -1) fakewall.splice(shit, 1);
+			}
+		}
 		}
 		
 		
@@ -395,6 +451,19 @@ function getMousePos(canvas, evt) {
 	wall.push([mousePos.x, mousePos.y, (mousePos2.x - mousePos.x), (mousePos2.y - mousePos.y)]);
 	mousePos = {x: 0, y:0}
 	mousePos2 = {x: 0, y:0}
+	wall = fixthisshitimade(wall);
+	}else if(tool == 4){
+	mousePos2 = getMousePos(canvas, e);
+	killwall.push([mousePos.x, mousePos.y, (mousePos2.x - mousePos.x), (mousePos2.y - mousePos.y)]);
+	mousePos = {x: 0, y:0}
+	mousePos2 = {x: 0, y:0}
+	killwall = fixthisshitimade(killwall);
+	}else if(tool == 5){
+	mousePos2 = getMousePos(canvas, e);
+	fakewall.push([mousePos.x, mousePos.y, (mousePos2.x - mousePos.x), (mousePos2.y - mousePos.y)]);
+	mousePos = {x: 0, y:0}
+	mousePos2 = {x: 0, y:0}
+	fakewall = fixthisshitimade(fakewall);
 	}
 	}, false);
 
